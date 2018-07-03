@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: http://100.68.167.74:5000/rafaelremondes/demo
-  tag: dev
+  tag: 0.0.10
   pullPolicy: IfNotPresent
 service:
   name: demo
