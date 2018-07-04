@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: http://100.68.167.74:5000/rafaelremondes/demo
-  tag: dev
+  repository: index.docker.io/v1/rafaelremondes/demo
+  tag: 0.0.13
   pullPolicy: IfNotPresent
 service:
   name: demo
