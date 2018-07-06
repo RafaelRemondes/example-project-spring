@@ -57,7 +57,7 @@ pipeline {
           }
           container('maven') {
             sh 'mvn clean deploy'
-            sh 'gcloud.auth activate-service-account rafaelremondes@jx-registry-test.iam.gserviceaccount.com --key-file=/home/jenkins/.auth/JX-Registry-Test-84e5f80822db.json'
+            sh 'gcloud auth activate-service-account rafaelremondes@jx-registry-test.iam.gserviceaccount.com --key-file=/home/jenkins/.auth/JX-Registry-Test-84e5f80822db.json'
 
 
             sh 'export VERSION=`cat VERSION` && skaffold run -f skaffold.yaml'
