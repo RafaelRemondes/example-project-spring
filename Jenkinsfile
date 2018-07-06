@@ -62,6 +62,7 @@ pipeline {
 
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
+            sh 'mkdir -p /home/jenkins/.helm/plugins'
             sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
@@ -76,6 +77,7 @@ pipeline {
           dir ('./charts/demo') {
             container('maven') {
               sh 'jx step changelog --version v\$(cat ../../VERSION)'
+              sh 'mkdir -p /home/jenkins/.helm/plugins'
               sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
 
               // release the helm chart
