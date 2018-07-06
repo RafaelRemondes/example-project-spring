@@ -67,6 +67,7 @@ pipeline {
             sh 'cp /home/jenkins/.aws-2/config /home/jenkins/.aws/config'
            
             sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
+            sh 'helm s3 init s3://helm.uphold.com/charts'
             sh 'pip install awscli'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
