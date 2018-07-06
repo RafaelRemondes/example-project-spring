@@ -68,7 +68,6 @@ pipeline {
            
             sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
             sh 'pip install awscli'
-            sh 'helm repo add jenkins-x https://chartmuseum.build.cd.jenkins-x.io'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
