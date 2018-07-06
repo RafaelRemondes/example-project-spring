@@ -5,7 +5,7 @@ pipeline {
     environment {
       ORG               = 'jx-registry-test'
       APP_NAME          = 'demo'
-      //CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+      CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     }
     stages {
       stage('CI Build and push snapshot') {
@@ -68,7 +68,7 @@ pipeline {
            
             sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
             sh 'pip install awscli'
-
+            sh 'helm repo add jenkins-x https://chartmuseum.build.cd.jenkins-x.io'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
