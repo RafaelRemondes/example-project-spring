@@ -45,6 +45,7 @@ pipeline {
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
+            sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
 
             sh "jx step git credentials"
             // so we can retrieve the version in later steps
@@ -76,6 +77,7 @@ pipeline {
           dir ('./charts/demo') {
             container('maven') {
               sh 'jx step changelog --version v\$(cat ../../VERSION)'
+              sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
 
               // release the helm chart
               sh 'jx step helm release'
