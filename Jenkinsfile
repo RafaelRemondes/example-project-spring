@@ -6,6 +6,7 @@ pipeline {
       ORG               = 'jx-registry-test'
       APP_NAME          = 'demo'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+      HELM_HOME         = '/home/jenkins/.helm'
     }
     stages {
       stage('CI Build and push snapshot') {
