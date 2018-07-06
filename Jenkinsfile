@@ -61,14 +61,7 @@ pipeline {
 
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
-            sh 'mkdir -p /home/jenkins/.helm/plugins'
-            sh 'mkdir /home/jenkins/.aws'
-            sh 'cp /home/jenkins/.aws-1/credentials /home/jenkins/.aws/credentials'
-            sh 'cp /home/jenkins/.aws-2/config /home/jenkins/.aws/config'
            
-            sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
-            sh 'helm s3 init s3://helm.uphold.com/charts'
-            sh 'pip install awscli'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
@@ -86,7 +79,7 @@ pipeline {
               sh 'jx step helm release'
 
               // promote through all 'Auto' promotion Environments
-              sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+              //sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
             }
           }
         }
