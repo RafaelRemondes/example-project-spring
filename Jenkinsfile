@@ -63,6 +63,10 @@ pipeline {
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
             sh 'mkdir -p /home/jenkins/.helm/plugins'
+            sh 'mkdir /home/jenkins/.aws'
+            sh 'cp /home/jenkins/.aws-1/credentials /home/jenkins/.aws/credentials'
+            sh 'cp /home/jenkins/.aws-2/config /home/jenkins/.aws/config'
+           
             sh 'helm plugin install https://github.com/hypnoglow/helm-s3.git'
             sh 'pip install awscli'
 
