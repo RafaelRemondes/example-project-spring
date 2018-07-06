@@ -44,7 +44,6 @@ pipeline {
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
-            sh "helm plugin install https://github.com/hypnoglow/helm-s3.git"
 
             sh "jx step git credentials"
             // so we can retrieve the version in later steps
